@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - HtmxDemo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
+    @await RenderSectionAsync("Head", required: false)
 </head>
 <body>
     <header>

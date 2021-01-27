@@ -1,0 +1,76 @@
+﻿@page
+@model DeleteItemsModel
+@{
+    ViewData["Title"] = "Delete items";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4>
+                                Customers
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul hx-boost="true"
+                        hx-target="closest li"
+                        hx-swap="outerHTML swap:1s"
+                        hx-confirm="Are you sure you want to delete this customer?"
+                        class="customer-list list-group list-group-lg list-group-flush list my--4">
+                        @foreach (var customer in Model.Customers)
+                        {
+                            <li class="list-group-item px-0">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <span class="avatar avatar-lg">
+                                            <img src="@customer.Avatar" alt="" class="avatar-img">
+                                        </span>
+                                    </div>
+                                    <div class="col ml--2">
+                                        <h4 class="card-title mb-1">
+                                            @GetCustomerFullName(customer)
+                                        </h4>
+                                        <p class="card-text small text-muted mb-1">
+                                            @customer.EmailAddress
+                                        </p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <form asp-page-handler="Delete" asp-route-id="@customer.Id">
+                                            <button type="submit" class="btn btn-sm btn-danger d-none d-md-inline-block">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Head {
+    <style>
+        .customer-list li.htmx-swapping {
+          opacity: 0;
+          transition: opacity 1s ease-out;
+        }
+    </style>
+}
+
+@functions {
+
+    string GetCustomerFullName(Customer customer)
+    {
+        return $"{customer.FirstName} {customer.LastName}";
+    }
+
+}
