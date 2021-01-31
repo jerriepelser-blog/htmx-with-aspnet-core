@@ -1,0 +1,30 @@
+﻿@page
+@model HtmxDemo.Pages.DeleteWithPartialRefreshModel
+@{
+    ViewData["Title"] = "Delete items";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4>
+                                Customers
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div hx-boost="true"
+                     hx-target="this"
+                     hx-swap="innerHTML"
+                     hx-confirm="Are you sure you want to delete this customer?"
+                     class="card-body">
+                    <partial name="_CustomerList" model="Model.Customers"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
