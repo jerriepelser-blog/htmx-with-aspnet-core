@@ -1,0 +1,17 @@
+﻿@page
+@model InfiniteScrolling
+@{
+    ViewData["Title"] = "Infinite Scrolling";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col" hx-indicator="#loading-indicator">
+            <h1 class="mb-5">
+                Tweets
+            </h1>
+            <partial name="_TweetList" model="@Model.InitialTweets"/>
+            <div id="loading-indicator" class="m-3">Loading more tweets...</div>
+        </div>
+    </div>
+</div>

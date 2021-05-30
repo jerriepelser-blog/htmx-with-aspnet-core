@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Tweet>
+
+@if (Model.Any())
+{
+    @foreach (var tweet in Model)
+    {
+        <div class="media mb-2">
+            <img src="@tweet.Avatar" class="mr-3" alt="Avatar for @tweet.Username" style="width: 50px; height: 50px;">
+            <div class="media-body">
+                <p class="mb-1">
+                    <strong>@tweet.Username</strong>
+                </p>
+                <p class="mb-1">@tweet.Text</p>
+                <p class="small text-muted">@tweet.Time.ToString("f")</p>
+            </div>
+        </div>
+    }
+    <div
+        hx-get="@Url.Page("", "LoadTweets", new {after = Model.Last().Time.ToString("O")})"
+        hx-trigger="revealed"
+        hx-swap="outerHTML">
+    </div>
+}
+else
+{
+    <p class="text-center">No more tweets 😭</p>
+}
