@@ -1,0 +1,29 @@
+﻿@model Customer
+
+<form asp-page-handler="Update" asp-route-id="@Model.Id">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" type="text" class="form-control">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" type="text" class="form-control">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="EmailAddress"></label>
+            <input asp-for="EmailAddress" type="text" class="form-control">
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        </div>
+    </div>
+    <a href="#" hx-get="@Url.Page("", "Cancel", new {id = Model.Id})" class="btn btn-sm btn-secondary d-none d-md-inline-block">
+        Cancel Changes
+    </a>
+    <button class="btn btn-sm btn-primary d-none d-md-inline-block">
+        Save Changes
+    </button>
+</form>

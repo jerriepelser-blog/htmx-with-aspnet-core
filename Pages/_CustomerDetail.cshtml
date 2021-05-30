@@ -1,0 +1,33 @@
+﻿@model Customer
+
+<div class="row align-items-center">
+    <div class="col-auto">
+        <span class="avatar avatar-lg">
+            <img src="@Model.Avatar" alt="" class="avatar-img">
+        </span>
+    </div>
+    <div class="col ml--2">
+        <h4 class="card-title mb-1">
+            @GetCustomerFullName(Model)
+        </h4>
+        <p class="card-text small text-muted mb-1">
+            @Model.EmailAddress
+        </p>
+    </div>
+    <div class="col-auto">
+        <form asp-page-handler="Edit" asp-route-id="@Model.Id">
+            <button type="submit" class="btn btn-sm btn-primary d-none d-md-inline-block">
+                Edit
+            </button>
+        </form>
+    </div>
+</div>
+
+@functions {
+
+    string GetCustomerFullName(Customer customer)
+    {
+        return $"{customer.FirstName} {customer.LastName}";
+    }
+
+}

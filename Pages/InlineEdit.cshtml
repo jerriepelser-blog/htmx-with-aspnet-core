@@ -1,0 +1,36 @@
+﻿@page
+@model InlineEditModel
+@{
+    ViewData["Title"] = "Inline editing";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4>
+                                Customers
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                <ul hx-boost="true"
+                    hx-target="closest li"
+                    hx-swap="innerHTML"
+                    class="customer-list list-group list-group-lg list-group-flush list my--4">
+                        @foreach (var customer in Model.Customers)
+                        {
+                            <li class="list-group-item px-0">
+                                <partial name="_CustomerDetail" model="customer"></partial>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
